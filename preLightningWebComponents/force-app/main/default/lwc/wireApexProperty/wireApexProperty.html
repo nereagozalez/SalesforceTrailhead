@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title="Related Contacts">
+        <template if:true={contacts.data}>
+            <template for:each={contacts.data} for:item="contact">
+                <p key={contact.Id}>{contact.Name}</p>
+                <p key={contact.Id}>{contact.Email}</p>
+                <p key={contact.Id}>{contact.Title}</p>
+                <p key={contact.Id}>{contact.Phone}</p>
+            </template>
+        </template>
+        <template if:true={errors}>
+            <p>{errors}</p>
+        </template>
+    </lightning-card>
+</template>

@@ -1,0 +1,30 @@
+### Data
+    ***Lightning Data Service (LDS)
+        - Using a client-side shared cache across all components eliminating unnecessary calls to the server.
+        - Different ways to work with Salesforce data using the Lightning Data Service:
+            1. Record Form Base Components -> https://developer.salesforce.com/docs/component-library/bundle/lightning-record-form/documentation
+                Ej: accountCreator, contactCreator
+            2. LDS Wire Adapters (read data)
+                - LDS wire adapters check the LDS cache first, and request data from the server only as needed.
+                    We can decorate properties: Ej: wireGetRecordProperty
+                    We can decorate function: Ej: wireGetRecordFunction -> This is useful when you want to execute some logic over the returned records.
+            3. Modify Data with LDS Functions (create and modify data)
+                Ej: ldsCreateRecord
+
+    ***Use Apex to Work with Data
+        - Must be static, public or global, and annotated with @AuraEnabled
+        - Allowing the framework to cache data eliminates repeated server calls making future read operations run faster -> cacheable = true
+          When an @AuraEnabled method is cacheable, Data Manipulation Language (DML) operations are not allowed.
+        - Call Apex Methods from LWC:
+            1. Using @wire
+                - The method must be cacheable.
+                - To refresh the data that was cached by an Apex method, call the refreshApex function.
+                Ej: AccountController
+            2. Call Apex Imperatively
+                - Call Apex imperatively when you need to control the invocation of read operations, and when you modify records.
+                Ej: callApexImperative
+        - The preferred way to work with lists of records in Lightning web components is to use the lightning-datatable base component.
+            1. Deploy a Lightning Web Component That Lists Records in a Table -> Ej accountList
+
+    *** Handle Server Errors
+        - 
